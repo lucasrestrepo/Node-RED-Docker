@@ -19,6 +19,7 @@ RUN npm install
 FROM node:lts-slim
 
 RUN apt-get update && apt-get install -y perl-modules && rm -rf /var/lib/apt/lists/*
+RUN apt-get install -y tzdata
 
 RUN deluser --remove-home node \
   && groupadd --gid 1000 nodered \
