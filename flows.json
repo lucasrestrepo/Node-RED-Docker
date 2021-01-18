@@ -14,25 +14,6 @@
         "info": ""
     },
     {
-        "id": "8aeba035.813e",
-        "type": "ui_group",
-        "name": "Power",
-        "tab": "255f2630.e1c57a",
-        "order": 1,
-        "disp": true,
-        "width": "12",
-        "collapse": true
-    },
-    {
-        "id": "255f2630.e1c57a",
-        "type": "ui_tab",
-        "name": "wvc",
-        "icon": "flash_on",
-        "order": 2,
-        "disabled": false,
-        "hidden": false
-    },
-    {
         "id": "3192ab1.1074f54",
         "type": "ui_base",
         "theme": {
@@ -128,6 +109,53 @@
         }
     },
     {
+        "id": "e97f0243.ac293",
+        "type": "position-config",
+        "name": "",
+        "isValide": "false",
+        "longitude": "0",
+        "latitude": "0",
+        "angleType": "deg",
+        "timeZoneOffset": "99",
+        "timeZoneDST": "0",
+        "stateTimeFormat": "3",
+        "stateDateFormat": "12"
+    },
+    {
+        "id": "542495d0.eef03c",
+        "type": "position-config",
+        "name": "",
+        "isValide": "true",
+        "longitude": "0",
+        "latitude": "0",
+        "angleType": "deg",
+        "timeZoneOffset": "99",
+        "timeZoneDST": "0",
+        "stateTimeFormat": "3",
+        "stateDateFormat": "12"
+    },
+    {
+        "id": "f42b4523.e8d068",
+        "type": "mqtt-broker",
+        "name": "mqtt-169",
+        "broker": "192.168.100.169",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": false,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
         "id": "b6124369.d75e6",
         "type": "inject",
         "z": "3af82246.3634ae",
@@ -148,8 +176,8 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 280,
-        "y": 420,
+        "x": 260,
+        "y": 380,
         "wires": [
             [
                 "cf02e020.bcf96"
@@ -228,25 +256,6 @@
         ]
     },
     {
-        "id": "43de3f.9f4e61c",
-        "type": "sunpos",
-        "z": "7630c96e.0ca918",
-        "name": "",
-        "lon": "-75.5756834",
-        "lat": "6.1976003",
-        "start": "sunrise",
-        "startoffset": 0,
-        "end": "sunset",
-        "endoffset": 0,
-        "x": 290,
-        "y": 160,
-        "wires": [
-            [
-                "ef5b37c0.3aa628"
-            ]
-        ]
-    },
-    {
         "id": "2344c2d1.87db2e",
         "type": "debug",
         "z": "7630c96e.0ca918",
@@ -276,138 +285,125 @@
                 "vt": "str"
             }
         ],
-        "repeat": "",
+        "repeat": "300",
         "crontab": "",
-        "once": false,
+        "once": true,
         "onceDelay": 0.1,
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 90,
+        "x": 100,
         "y": 160,
         "wires": [
             [
-                "43de3f.9f4e61c"
+                "1c2b3081.acfe4f"
             ]
         ]
     },
     {
-        "id": "ef5b37c0.3aa628",
-        "type": "blindcontroller",
-        "z": "7630c96e.0ca918",
-        "name": "cortina1",
-        "mode": "Summer",
-        "channel": "1",
-        "orientation": "315",
-        "noffset": "",
-        "poffset": "",
-        "top": "200",
-        "bottom": "5",
-        "depth": "50",
-        "altitudethreshold": "",
-        "increment": "10",
-        "maxopen": "0",
-        "maxclosed": "100",
-        "temperaturethreshold": "",
-        "temperaturethresholdposition": "",
-        "cloudsthreshold": "",
-        "cloudsthresholdposition": "",
-        "uvindexthreshold": "",
-        "uvindexthresholdposition": "",
-        "nightposition": "100",
-        "expiryperiod": "",
-        "opposite": true,
-        "x": 500,
-        "y": 120,
-        "wires": [
-            [
-                "2344c2d1.87db2e"
-            ]
-        ]
-    },
-    {
-        "id": "451fc132.9331d",
-        "type": "inject",
-        "z": "7630c96e.0ca918",
-        "name": "make request",
-        "props": [
-            {
-                "p": "payload",
-                "v": "",
-                "vt": "date"
-            },
-            {
-                "p": "topic",
-                "v": "",
-                "vt": "string"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": "",
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 130,
-        "y": 300,
-        "wires": [
-            [
-                "3df695cb.25097a"
-            ]
-        ]
-    },
-    {
-        "id": "3df695cb.25097a",
-        "type": "sunpos",
+        "id": "1c2b3081.acfe4f",
+        "type": "sun-position",
         "z": "7630c96e.0ca918",
         "name": "",
-        "lon": "-75.5756834",
-        "lat": "6.1976003",
-        "start": "sunrise",
-        "startoffset": 0,
-        "end": "sunset",
-        "endoffset": 0,
-        "x": 310,
-        "y": 300,
+        "positionConfig": "542495d0.eef03c",
+        "rules": [],
+        "onlyOnChange": "true",
+        "topic": "sun",
+        "outputs": 1,
+        "start": "",
+        "startType": "none",
+        "startOffset": 0,
+        "startOffsetType": "none",
+        "startOffsetMultiplier": 60000,
+        "end": "",
+        "endType": "none",
+        "endOffset": 0,
+        "endOffsetType": "none",
+        "endOffsetMultiplier": 60000,
+        "x": 290,
+        "y": 160,
         "wires": [
             [
-                "796a91ee.2919c"
+                "e2f5609a.2a711"
             ]
         ]
     },
     {
-        "id": "796a91ee.2919c",
-        "type": "function",
+        "id": "e2f5609a.2a711",
+        "type": "blind-control",
         "z": "7630c96e.0ca918",
-        "name": "endTime +alt/azi+icone",
-        "func": "var seconds = msg.payload.endTime;\nvar endLocaleTime;\nvar azimuth = Math.round(msg.payload.azimuth*10)/10;//msg.payload.azimuth;//azimuth = azimuth.toFixed(1);\nvar altitude = Math.round(msg.payload.altitude*10)/10;//msg.payload.altitude;//altitude = altitude.toFixed(1);\nvar sunInSky = msg.payload.sunInSky;\n\n//transforme epoch en 21:01:449\nvar d = new Date(msg.payload.endTime);\nvar n = d.toLocaleTimeString();\nendLocaleTime = n;\n\n//compare si nuit ou jour ?\nvar secondsNow = msg.time;\nif (secondsNow > seconds || secondsNow < msg.startTime){\n    flow.set('wvcPow5min',0 );  //evite 0.8w toute la nuit\n    msg.razCountEnergy = 0;\n    msg.state = \"wvcPow5min=0 !\";\n    msg.icone = 'https://cdn.icon-icons.com/icons2/1370/PNG/128/if-weather-4-2682847_90799.png';//https://cdn.icon-icons.com/icons2/799/PNG/128/night-01_icon-icons.com_65776.png';//https://cdn.icon-icons.com/icons2/1465/PNG/512/640crescentmoon_100402.png';\n    msg.title = 'Stand by !' ;\n    \n}else{\n    msg.razCountEnergy = 0;\n    msg.state = \"Production !\";\n    msg.icone = 'https://cdn.icon-icons.com/icons2/1370/PNG/128/if-weather-3-2682848_90785.png';//https://cdn.icon-icons.com/icons2/799/PNG/128/sunny512x512-01_icon-icons.com_65775.png';//https://cdn.icon-icons.com/icons2/1465/PNG/512/643sunwithface_101008.png';\n    msg.title = 'Working good !' ;\n   \n}if (secondsNow == seconds){\n    msg.razCountEnergy = 1;\n    msg.state = \"Production en pause !\";\n    }\n\n//********** affiche le status du Node **********\nnode.status({text:n}); //value});\n\n//prepare les sorties\n node.send([{\n    startTime:msg.startTime,\n    endTime:msg.endTime,\n    endLocaleTime:endLocaleTime,\n    seconds:seconds,\n    azimuth:azimuth,\n    altitude:altitude\n    \n },null,null]);\n \n node.send([null,{\n     state:msg.state,\n     icone:msg.icone,\n     title:msg.title,\n     razCountEnergy:msg.razCountEnergy,\n     sunInSky:sunInSky\n     \n },null]);\n \n  node.send([null,null,{\n    payload:altitude\n     \n }]);\n /*\n msg.payload = [];//prepare les sorties\n node.send([{\n    startTime:msg.startTime,\n    endTime:msg.endTime,\n    endLocaleTime:endLocaleTime,\n    seconds:seconds,\n    azimuth:azimuth,\n    altitude:altitude\n    \n },null]);\n \n node.send([null,{\n     state:msg.state,\n     icone:msg.icone,\n     title:msg.title,\n     razCountEnergy:msg.razCountEnergy,\n     sunInSky:sunInSky\n     \n }]);\n */\n \n \n \n /*\n msg.payload = [];//prepare les sorties\n node.send([{\n    startTime:msg.startTime,\n    endTime:msg.endTime,\n    endLocaleTime:endLocaleTime,\n    seconds:seconds,\n    azimuth:azimuth,\n    altitude:altitude\n    \n },null]);\n \n node.send([null,{\n     payload:msg.endTimeOn\n     \n }]);\n */",
-        "outputs": 3,
-        "noerr": 0,
-        "x": 570,
-        "y": 260,
+        "name": "",
+        "topic": "",
+        "positionConfig": "542495d0.eef03c",
+        "outputs": "1",
+        "autoTrigger": false,
+        "autoTriggerTime": 3600000,
+        "startDelayTime": 10000,
+        "storeName": "",
+        "blindIncrement": "1",
+        "blindOpenPos": "100",
+        "blindClosedPos": 0,
+        "blindPosReverse": false,
+        "blindPosDefault": "open (max)",
+        "blindPosDefaultType": "levelFixed",
+        "overwriteExpire": "",
+        "rules": [],
+        "sunControlMode": "2",
+        "sunFloorLength": "50",
+        "sunMinAltitude": "",
+        "sunMinDelta": "",
+        "blindPosMin": "closed (min)",
+        "blindPosMinType": "levelFixed",
+        "blindPosMax": "open (max)",
+        "blindPosMaxType": "levelFixed",
+        "smoothTime": "",
+        "sunTopic": "",
+        "windowTop": "200",
+        "windowBottom": "5",
+        "windowAzimuthStart": "240",
+        "windowAzimuthEnd": "330",
+        "oversteerValue": "",
+        "oversteerValueType": "none",
+        "oversteerCompare": "gte",
+        "oversteerThreshold": "",
+        "oversteerThresholdType": "num",
+        "oversteerBlindPos": "open (max)",
+        "oversteerBlindPosType": "levelFixed",
+        "oversteer2Value": "",
+        "oversteer2ValueType": "none",
+        "oversteer2Compare": "gte",
+        "oversteer2Threshold": "",
+        "oversteer2ThresholdType": "num",
+        "oversteer2BlindPos": "open (max)",
+        "oversteer2BlindPosType": "levelFixed",
+        "oversteer3Value": "",
+        "oversteer3ValueType": "none",
+        "oversteer3Compare": "gte",
+        "oversteer3Threshold": "",
+        "oversteer3ThresholdType": "num",
+        "oversteer3BlindPos": "open (max)",
+        "oversteer3BlindPosType": "levelFixed",
+        "oversteerTopic": "",
+        "x": 500,
+        "y": 160,
         "wires": [
             [
-                "40a39504.ff86ec"
-            ],
-            [],
-            []
+                "2344c2d1.87db2e",
+                "29cb90ee.b49e3"
+            ]
         ]
     },
     {
-        "id": "40a39504.ff86ec",
-        "type": "ui_text",
+        "id": "29cb90ee.b49e3",
+        "type": "mqtt out",
         "z": "7630c96e.0ca918",
-        "group": "8aeba035.813e",
-        "order": 6,
-        "width": "4",
-        "height": "1",
-        "name": "endTime",
-        "label": "<font color=grey>{{seconds}}s",
-        "format": "{{endLocaleTime}}",
-        "layout": "row-left",
-        "x": 938.8930397033691,
-        "y": 278.55976486206055,
+        "name": "",
+        "topic": "cmnd/tasmota_65FC58/ShutterPosition1",
+        "qos": "",
+        "retain": "",
+        "broker": "f42b4523.e8d068",
+        "x": 780,
+        "y": 220,
         "wires": []
     }
 ]
