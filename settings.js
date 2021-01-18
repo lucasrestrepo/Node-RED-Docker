@@ -265,7 +265,7 @@ module.exports = {
             audit: false
         }
     },
-
+    process.env.TZ = "America/Bogota";
     // Customising the editor
     editorTheme: {
         projects: {
