@@ -7,6 +7,13 @@
         "info": ""
     },
     {
+        "id": "7630c96e.0ca918",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "b6124369.d75e6",
         "type": "inject",
         "z": "3af82246.3634ae",
@@ -103,6 +110,104 @@
         "wires": [
             [
                 "c2380ca8.0463"
+            ]
+        ]
+    },
+    {
+        "id": "43de3f.9f4e61c",
+        "type": "sunpos",
+        "z": "7630c96e.0ca918",
+        "name": "",
+        "lon": "6.1976003",
+        "lat": "-75.5756834",
+        "start": "sunrise",
+        "startoffset": 0,
+        "end": "sunset",
+        "endoffset": 0,
+        "x": 260,
+        "y": 160,
+        "wires": [
+            [
+                "ef5b37c0.3aa628"
+            ]
+        ]
+    },
+    {
+        "id": "2344c2d1.87db2e",
+        "type": "debug",
+        "z": "7630c96e.0ca918",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 710,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "fbf0b7a9.ef8be8",
+        "type": "inject",
+        "z": "7630c96e.0ca918",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 90,
+        "y": 160,
+        "wires": [
+            [
+                "43de3f.9f4e61c"
+            ]
+        ]
+    },
+    {
+        "id": "ef5b37c0.3aa628",
+        "type": "blindcontroller",
+        "z": "7630c96e.0ca918",
+        "name": "cortina1",
+        "mode": "Summer",
+        "channel": "1",
+        "orientation": "315",
+        "noffset": "",
+        "poffset": "",
+        "top": "200",
+        "bottom": "5",
+        "depth": "50",
+        "altitudethreshold": "",
+        "increment": "10",
+        "maxopen": "0",
+        "maxclosed": "100",
+        "temperaturethreshold": "",
+        "temperaturethresholdposition": "",
+        "cloudsthreshold": "",
+        "cloudsthresholdposition": "",
+        "uvindexthreshold": "",
+        "uvindexthresholdposition": "",
+        "nightposition": "100",
+        "expiryperiod": "",
+        "opposite": true,
+        "x": 520,
+        "y": 160,
+        "wires": [
+            [
+                "2344c2d1.87db2e"
             ]
         ]
     }
