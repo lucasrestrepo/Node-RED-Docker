@@ -14,6 +14,120 @@
         "info": ""
     },
     {
+        "id": "8aeba035.813e",
+        "type": "ui_group",
+        "name": "Power",
+        "tab": "255f2630.e1c57a",
+        "order": 1,
+        "disp": true,
+        "width": "12",
+        "collapse": true
+    },
+    {
+        "id": "255f2630.e1c57a",
+        "type": "ui_tab",
+        "name": "wvc",
+        "icon": "flash_on",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "3192ab1.1074f54",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
         "id": "b6124369.d75e6",
         "type": "inject",
         "z": "3af82246.3634ae",
@@ -118,13 +232,13 @@
         "type": "sunpos",
         "z": "7630c96e.0ca918",
         "name": "",
-        "lon": "6.1976003",
-        "lat": "-75.5756834",
+        "lon": "-75.5756834",
+        "lat": "6.1976003",
         "start": "sunrise",
         "startoffset": 0,
         "end": "sunset",
         "endoffset": 0,
-        "x": 260,
+        "x": 290,
         "y": 160,
         "wires": [
             [
@@ -144,7 +258,7 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 710,
+        "x": 690,
         "y": 160,
         "wires": []
     },
@@ -203,12 +317,97 @@
         "nightposition": "100",
         "expiryperiod": "",
         "opposite": true,
-        "x": 520,
-        "y": 160,
+        "x": 500,
+        "y": 120,
         "wires": [
             [
                 "2344c2d1.87db2e"
             ]
         ]
+    },
+    {
+        "id": "451fc132.9331d",
+        "type": "inject",
+        "z": "7630c96e.0ca918",
+        "name": "make request",
+        "props": [
+            {
+                "p": "payload",
+                "v": "",
+                "vt": "date"
+            },
+            {
+                "p": "topic",
+                "v": "",
+                "vt": "string"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 300,
+        "wires": [
+            [
+                "3df695cb.25097a"
+            ]
+        ]
+    },
+    {
+        "id": "3df695cb.25097a",
+        "type": "sunpos",
+        "z": "7630c96e.0ca918",
+        "name": "",
+        "lon": "-75.5756834",
+        "lat": "6.1976003",
+        "start": "sunrise",
+        "startoffset": 0,
+        "end": "sunset",
+        "endoffset": 0,
+        "x": 310,
+        "y": 300,
+        "wires": [
+            [
+                "796a91ee.2919c"
+            ]
+        ]
+    },
+    {
+        "id": "796a91ee.2919c",
+        "type": "function",
+        "z": "7630c96e.0ca918",
+        "name": "endTime +alt/azi+icone",
+        "func": "var seconds = msg.payload.endTime;\nvar endLocaleTime;\nvar azimuth = Math.round(msg.payload.azimuth*10)/10;//msg.payload.azimuth;//azimuth = azimuth.toFixed(1);\nvar altitude = Math.round(msg.payload.altitude*10)/10;//msg.payload.altitude;//altitude = altitude.toFixed(1);\nvar sunInSky = msg.payload.sunInSky;\n\n//transforme epoch en 21:01:449\nvar d = new Date(msg.payload.endTime);\nvar n = d.toLocaleTimeString();\nendLocaleTime = n;\n\n//compare si nuit ou jour ?\nvar secondsNow = msg.time;\nif (secondsNow > seconds || secondsNow < msg.startTime){\n    flow.set('wvcPow5min',0 );  //evite 0.8w toute la nuit\n    msg.razCountEnergy = 0;\n    msg.state = \"wvcPow5min=0 !\";\n    msg.icone = 'https://cdn.icon-icons.com/icons2/1370/PNG/128/if-weather-4-2682847_90799.png';//https://cdn.icon-icons.com/icons2/799/PNG/128/night-01_icon-icons.com_65776.png';//https://cdn.icon-icons.com/icons2/1465/PNG/512/640crescentmoon_100402.png';\n    msg.title = 'Stand by !' ;\n    \n}else{\n    msg.razCountEnergy = 0;\n    msg.state = \"Production !\";\n    msg.icone = 'https://cdn.icon-icons.com/icons2/1370/PNG/128/if-weather-3-2682848_90785.png';//https://cdn.icon-icons.com/icons2/799/PNG/128/sunny512x512-01_icon-icons.com_65775.png';//https://cdn.icon-icons.com/icons2/1465/PNG/512/643sunwithface_101008.png';\n    msg.title = 'Working good !' ;\n   \n}if (secondsNow == seconds){\n    msg.razCountEnergy = 1;\n    msg.state = \"Production en pause !\";\n    }\n\n//********** affiche le status du Node **********\nnode.status({text:n}); //value});\n\n//prepare les sorties\n node.send([{\n    startTime:msg.startTime,\n    endTime:msg.endTime,\n    endLocaleTime:endLocaleTime,\n    seconds:seconds,\n    azimuth:azimuth,\n    altitude:altitude\n    \n },null,null]);\n \n node.send([null,{\n     state:msg.state,\n     icone:msg.icone,\n     title:msg.title,\n     razCountEnergy:msg.razCountEnergy,\n     sunInSky:sunInSky\n     \n },null]);\n \n  node.send([null,null,{\n    payload:altitude\n     \n }]);\n /*\n msg.payload = [];//prepare les sorties\n node.send([{\n    startTime:msg.startTime,\n    endTime:msg.endTime,\n    endLocaleTime:endLocaleTime,\n    seconds:seconds,\n    azimuth:azimuth,\n    altitude:altitude\n    \n },null]);\n \n node.send([null,{\n     state:msg.state,\n     icone:msg.icone,\n     title:msg.title,\n     razCountEnergy:msg.razCountEnergy,\n     sunInSky:sunInSky\n     \n }]);\n */\n \n \n \n /*\n msg.payload = [];//prepare les sorties\n node.send([{\n    startTime:msg.startTime,\n    endTime:msg.endTime,\n    endLocaleTime:endLocaleTime,\n    seconds:seconds,\n    azimuth:azimuth,\n    altitude:altitude\n    \n },null]);\n \n node.send([null,{\n     payload:msg.endTimeOn\n     \n }]);\n */",
+        "outputs": 3,
+        "noerr": 0,
+        "x": 570,
+        "y": 260,
+        "wires": [
+            [
+                "40a39504.ff86ec"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "40a39504.ff86ec",
+        "type": "ui_text",
+        "z": "7630c96e.0ca918",
+        "group": "8aeba035.813e",
+        "order": 6,
+        "width": "4",
+        "height": "1",
+        "name": "endTime",
+        "label": "<font color=grey>{{seconds}}s",
+        "format": "{{endLocaleTime}}",
+        "layout": "row-left",
+        "x": 938.8930397033691,
+        "y": 278.55976486206055,
+        "wires": []
     }
 ]
