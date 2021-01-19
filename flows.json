@@ -22,7 +22,8 @@
                 "default": "#0094CE",
                 "baseColor": "#0094CE",
                 "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
-                "edited": false
+                "edited": true,
+                "reset": false
             },
             "darkTheme": {
                 "default": "#097479",
@@ -264,10 +265,11 @@
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "false",
+        "complete": "true",
+        "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 690,
+        "x": 710,
         "y": 160,
         "wires": []
     },
@@ -347,7 +349,64 @@
         "blindPosDefault": "open (max)",
         "blindPosDefaultType": "levelFixed",
         "overwriteExpire": "",
-        "rules": [],
+        "rules": [
+            {
+                "index": 0,
+                "name": "",
+                "isValid": true,
+                "valid": {
+                    "validTimeReg": true,
+                    "validLevel": true,
+                    "validOperand1A": true,
+                    "validOperand1B": true
+                },
+                "timeValue": "sunset",
+                "timeType": "pdsTime",
+                "timeOp": 0,
+                "timeOpText": "↥ until",
+                "offsetValue": "",
+                "offsetType": "none",
+                "multiplier": 60000,
+                "timeDays": "*",
+                "timeMonths": "*",
+                "timeOnlyEvenDays": false,
+                "timeOnlyOddDays": false,
+                "timeDateStart": "",
+                "timeDateEnd": "",
+                "timeMinValue": "",
+                "timeMinType": "none",
+                "offsetMinValue": "",
+                "offsetMinType": "none",
+                "multiplierMin": 60000,
+                "timeMaxValue": "",
+                "timeMaxType": "none",
+                "offsetMaxValue": "",
+                "offsetMaxType": "none",
+                "multiplierMax": 60000,
+                "levelValue": "open (max)",
+                "levelType": "levelFixed",
+                "levelOp": 0,
+                "levelOpText": "↕ absolute",
+                "topic": "",
+                "importance": 0,
+                "resetOverwrite": false,
+                "validOperandAValue": "cloudcoverage",
+                "validOperandAType": "global",
+                "validOperator": "gte",
+                "validOperatorText": "≥",
+                "validOperandBValue": "50",
+                "validOperandBType": "num",
+                "valid2LogOperator": 0,
+                "valid2LogOperatorText": "N/A",
+                "valid2OperandAValue": "",
+                "valid2OperandAType": "msg",
+                "valid2Operator": "true",
+                "valid2OperatorText": "is true",
+                "valid2OperandBValue": "",
+                "valid2OperandBType": "num",
+                "description": "<div><i class=\"fa fa-code-fork\" aria-hidden=\"true\"></i> <var>global.cloudcoverage</var> ≥ 50</div><div><i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> ↥ until <var>sunset</var></div><div>↕ absolute <var>open (max)</var></div>"
+            }
+        ],
         "sunControlMode": "2",
         "sunFloorLength": "50",
         "sunMinAltitude": "",
@@ -360,8 +419,8 @@
         "sunTopic": "",
         "windowTop": "200",
         "windowBottom": "5",
-        "windowAzimuthStart": "240",
-        "windowAzimuthEnd": "330",
+        "windowAzimuthStart": "238",
+        "windowAzimuthEnd": "250",
         "oversteerValue": "",
         "oversteerValueType": "none",
         "oversteerCompare": "gte",
@@ -384,7 +443,7 @@
         "oversteer3BlindPos": "open (max)",
         "oversteer3BlindPosType": "levelFixed",
         "oversteerTopic": "",
-        "x": 500,
+        "x": 510,
         "y": 160,
         "wires": [
             [
@@ -405,5 +464,97 @@
         "x": 780,
         "y": 220,
         "wires": []
+    },
+    {
+        "id": "7cb60d32.ccd044",
+        "type": "openweathermap",
+        "z": "7630c96e.0ca918",
+        "name": "GetWeather",
+        "wtype": "current",
+        "lon": "",
+        "lat": "",
+        "city": "Medellin",
+        "country": "Colombia",
+        "language": "en",
+        "x": 290,
+        "y": 360,
+        "wires": [
+            [
+                "f184ced4.1def1"
+            ]
+        ]
+    },
+    {
+        "id": "f9ad43ac.fd21e",
+        "type": "debug",
+        "z": "7630c96e.0ca918",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 550,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "a08af544.7e0168",
+        "type": "inject",
+        "z": "7630c96e.0ca918",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1800",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 360,
+        "wires": [
+            [
+                "7cb60d32.ccd044"
+            ]
+        ]
+    },
+    {
+        "id": "f184ced4.1def1",
+        "type": "change",
+        "z": "7630c96e.0ca918",
+        "name": "cloud-cover",
+        "rules": [
+            {
+                "t": "set",
+                "p": "cloudcoverage",
+                "pt": "global",
+                "to": "payload.clouds",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 490,
+        "y": 360,
+        "wires": [
+            [
+                "f9ad43ac.fd21e"
+            ]
+        ]
     }
 ]
