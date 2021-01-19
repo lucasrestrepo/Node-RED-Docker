@@ -360,8 +360,8 @@
                     "validOperand1A": true,
                     "validOperand1B": true
                 },
-                "timeValue": "sunset",
-                "timeType": "pdsTime",
+                "timeValue": "",
+                "timeType": "none",
                 "timeOp": 0,
                 "timeOpText": "↥ until",
                 "offsetValue": "",
@@ -394,7 +394,7 @@
                 "validOperandAType": "global",
                 "validOperator": "gte",
                 "validOperatorText": "≥",
-                "validOperandBValue": "50",
+                "validOperandBValue": "75",
                 "validOperandBType": "num",
                 "valid2LogOperator": 0,
                 "valid2LogOperatorText": "N/A",
@@ -404,7 +404,7 @@
                 "valid2OperatorText": "is true",
                 "valid2OperandBValue": "",
                 "valid2OperandBType": "num",
-                "description": "<div><i class=\"fa fa-code-fork\" aria-hidden=\"true\"></i> <var>global.cloudcoverage</var> ≥ 50</div><div><i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> ↥ until <var>sunset</var></div><div>↕ absolute <var>open (max)</var></div>"
+                "description": "<div><i class=\"fa fa-code-fork\" aria-hidden=\"true\"></i> <var>global.cloudcoverage</var> ≥ 75</div><div>↕ absolute <var>open (max)</var></div>"
             }
         ],
         "sunControlMode": "2",
@@ -493,12 +493,12 @@
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "payload",
+        "complete": "payload.clouds",
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 550,
-        "y": 460,
+        "x": 700,
+        "y": 360,
         "wires": []
     },
     {
