@@ -50,4 +50,7 @@ ENV NODE_ENV=production
 ENV NODE_PATH=/data/node_modules
 EXPOSE 1880
 
+RUN npm install node-red-contrib-sun-position
+RUN npm install node-red-node-openweathermap
+
 CMD ["node", "/data/server.js", "/data/flows.json"]
