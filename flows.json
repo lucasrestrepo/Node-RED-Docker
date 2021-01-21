@@ -1,12 +1,5 @@
 [
     {
-        "id": "3af82246.3634ae",
-        "type": "tab",
-        "label": "Flow 1",
-        "disabled": false,
-        "info": ""
-    },
-    {
         "id": "7630c96e.0ca918",
         "type": "tab",
         "label": "Flow 2",
@@ -157,104 +150,22 @@
         "willPayload": ""
     },
     {
-        "id": "b6124369.d75e6",
-        "type": "inject",
-        "z": "3af82246.3634ae",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 260,
-        "y": 380,
-        "wires": [
-            [
-                "cf02e020.bcf96"
-            ]
-        ]
+        "id": "ae86212d.09517",
+        "type": "ui_tab",
+        "name": "Cortinas Orientales",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
     },
     {
-        "id": "cf02e020.bcf96",
-        "type": "debug",
-        "z": "3af82246.3634ae",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 500,
-        "y": 380,
-        "wires": []
-    },
-    {
-        "id": "55dd0376.f7c64c",
-        "type": "http in",
-        "z": "3af82246.3634ae",
-        "name": "",
-        "url": "/hello",
-        "method": "get",
-        "upload": false,
-        "swaggerDoc": "",
-        "x": 240,
-        "y": 480,
-        "wires": [
-            [
-                "c656aba7.944288"
-            ]
-        ]
-    },
-    {
-        "id": "c2380ca8.0463",
-        "type": "http response",
-        "z": "3af82246.3634ae",
-        "name": "",
-        "statusCode": "",
-        "headers": {},
-        "x": 580,
-        "y": 480,
-        "wires": []
-    },
-    {
-        "id": "c656aba7.944288",
-        "type": "change",
-        "z": "3af82246.3634ae",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "{\"text\":\"Hello\"}",
-                "tot": "json"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 410,
-        "y": 480,
-        "wires": [
-            [
-                "c2380ca8.0463"
-            ]
-        ]
+        "id": "58dab51.3b7db4c",
+        "type": "ui_group",
+        "name": "Cortinas",
+        "tab": "ae86212d.09517",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
     },
     {
         "id": "2344c2d1.87db2e",
@@ -348,18 +259,13 @@
         "blindPosReverse": false,
         "blindPosDefault": "open (max)",
         "blindPosDefaultType": "levelFixed",
-        "overwriteExpire": "",
+        "overwriteExpire": "300000",
         "rules": [
             {
                 "index": 0,
                 "name": "",
-                "isValid": true,
-                "valid": {
-                    "validTimeReg": true,
-                    "validLevel": true,
-                    "validOperand1A": true,
-                    "validOperand1B": true
-                },
+                "isValid": false,
+                "valid": {},
                 "timeValue": "",
                 "timeType": "none",
                 "timeOp": 0,
@@ -404,7 +310,9 @@
                 "valid2OperatorText": "is true",
                 "valid2OperandBValue": "",
                 "valid2OperandBType": "num",
-                "description": "<div><i class=\"fa fa-code-fork\" aria-hidden=\"true\"></i> <var>global.cloudcoverage</var> ≥ 75</div><div>↕ absolute <var>open (max)</var></div>"
+                "description": "<div><i class=\"fa fa-code-fork\" aria-hidden=\"true\"></i> <var>global.cloudcoverage</var> ≥ 75</div><div>↕ absolute <var>open (max)</var></div>",
+                "timeMinOp": 0,
+                "timeMaxOp": 0
             }
         ],
         "sunControlMode": "2",
@@ -448,7 +356,9 @@
         "wires": [
             [
                 "2344c2d1.87db2e",
-                "29cb90ee.b49e3"
+                "29cb90ee.b49e3",
+                "a0a1e2d8.3ba8d",
+                "a89051ee.f623a"
             ]
         ]
     },
@@ -456,12 +366,12 @@
         "id": "29cb90ee.b49e3",
         "type": "mqtt out",
         "z": "7630c96e.0ca918",
-        "name": "",
-        "topic": "cmnd/tasmota_65FC58/ShutterPosition1",
+        "name": "Westblinds",
+        "topic": "cmnd/westblinds/ShutterPosition1",
         "qos": "",
         "retain": "",
         "broker": "f42b4523.e8d068",
-        "x": 780,
+        "x": 730,
         "y": 220,
         "wires": []
     },
@@ -554,6 +464,84 @@
         "wires": [
             [
                 "f9ad43ac.fd21e"
+            ]
+        ]
+    },
+    {
+        "id": "a0a1e2d8.3ba8d",
+        "type": "ui_gauge",
+        "z": "7630c96e.0ca918",
+        "name": "Cortinas",
+        "group": "58dab51.3b7db4c",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Posicion",
+        "label": "%",
+        "format": "%",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 720,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "a89051ee.f623a",
+        "type": "ui_slider",
+        "z": "7630c96e.0ca918",
+        "name": "",
+        "label": "posicion manual",
+        "tooltip": "",
+        "group": "58dab51.3b7db4c",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "outs": "end",
+        "topic": "",
+        "min": "100",
+        "max": "0",
+        "step": "1",
+        "x": 160,
+        "y": 260,
+        "wires": [
+            [
+                "24151455.fffa9c"
+            ]
+        ]
+    },
+    {
+        "id": "24151455.fffa9c",
+        "type": "change",
+        "z": "7630c96e.0ca918",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "levelOverwrite",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 390,
+        "y": 260,
+        "wires": [
+            [
+                "e2f5609a.2a711"
             ]
         ]
     }
