@@ -41,10 +41,14 @@ USER 0
 RUN chgrp -R 0 /data \
   && chmod -R g=u /data
 
+RUN npm install node-red-contrib-sun-position
+RUN npm install node-red-node-openweathermap
+
 USER 1000
 
 WORKDIR /data
 
+ENV TZ=America/Bogota
 ENV PORT 1880
 ENV NODE_ENV=production
 ENV NODE_PATH=/data/node_modules
