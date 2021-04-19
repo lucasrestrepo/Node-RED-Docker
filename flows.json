@@ -123,8 +123,8 @@
         "longitude": "0",
         "latitude": "0",
         "angleType": "deg",
-        "timeZoneOffset": "99",
-        "timeZoneDST": "0",
+        "timeZoneOffset": 99,
+        "timeZoneDST": 0,
         "stateTimeFormat": "3",
         "stateDateFormat": "12"
     },
@@ -166,6 +166,27 @@
         "disp": true,
         "width": "6",
         "collapse": false
+    },
+    {
+        "id": "fdbe63a.a9de3a",
+        "type": "mqtt-broker",
+        "name": "local",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": false,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
     },
     {
         "id": "2344c2d1.87db2e",
@@ -259,7 +280,7 @@
         "blindPosReverse": false,
         "blindPosDefault": "open (max)",
         "blindPosDefaultType": "levelFixed",
-        "overwriteExpire": "300000",
+        "overwriteExpire": "18000000",
         "rules": [
             {
                 "index": 0,
@@ -298,8 +319,8 @@
                 "resetOverwrite": false,
                 "validOperandAValue": "cloudcoverage",
                 "validOperandAType": "global",
-                "validOperator": "gte",
-                "validOperatorText": "≥",
+                "validOperator": "gt",
+                "validOperatorText": ">",
                 "validOperandBValue": "75",
                 "validOperandBType": "num",
                 "valid2LogOperator": 0,
@@ -310,7 +331,7 @@
                 "valid2OperatorText": "is true",
                 "valid2OperandBValue": "",
                 "valid2OperandBType": "num",
-                "description": "<div><i class=\"fa fa-code-fork\" aria-hidden=\"true\"></i> <var>global.cloudcoverage</var> ≥ 75</div><div>↕ absolute <var>open (max)</var></div>",
+                "description": "<div><i class=\"fa fa-code-fork\" aria-hidden=\"true\"></i> <var>global.cloudcoverage</var> > 75</div><div>↕ absolute <var>open (max)</var></div>",
                 "timeMinOp": 0,
                 "timeMaxOp": 0
             }
@@ -328,7 +349,7 @@
         "windowTop": "200",
         "windowBottom": "5",
         "windowAzimuthStart": "238",
-        "windowAzimuthEnd": "250",
+        "windowAzimuthEnd": "270",
         "oversteerValue": "",
         "oversteerValueType": "none",
         "oversteerCompare": "gte",
@@ -370,7 +391,7 @@
         "topic": "cmnd/westblinds/ShutterPosition1",
         "qos": "",
         "retain": "",
-        "broker": "f42b4523.e8d068",
+        "broker": "fdbe63a.a9de3a",
         "x": 730,
         "y": 220,
         "wires": []
@@ -510,8 +531,8 @@
         "min": "100",
         "max": "0",
         "step": "1",
-        "x": 160,
-        "y": 260,
+        "x": 220,
+        "y": 60,
         "wires": [
             [
                 "24151455.fffa9c"
@@ -522,7 +543,7 @@
         "id": "24151455.fffa9c",
         "type": "change",
         "z": "7630c96e.0ca918",
-        "name": "",
+        "name": "OvewritePosition",
         "rules": [
             {
                 "t": "set",
@@ -537,8 +558,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 390,
-        "y": 260,
+        "x": 430,
+        "y": 60,
         "wires": [
             [
                 "e2f5609a.2a711"
