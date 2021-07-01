@@ -8,6 +8,8 @@
         "node-red": "^1.0.0",
         "node-red-dashboard" : "^2.16.3",
         "node-red-contrib-blindcontroller-v2" : "~1.0.8",
+        "node-red-contrib-collector" : "~0.0.1",
+        "node-red-contrib-match" : "~1.0.2",
         "node-red-contrib-sun-position" : "~1.1.7",
         "node-red-node-openweathermap"  : "~0.3.2"
     },
