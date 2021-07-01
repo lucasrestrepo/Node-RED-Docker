@@ -7,6 +7,13 @@
         "info": ""
     },
     {
+        "id": "61b44bc2.6c9124",
+        "type": "tab",
+        "label": "Flow 6",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "3192ab1.1074f54",
         "type": "ui_base",
         "theme": {
@@ -171,7 +178,7 @@
         "id": "fdbe63a.a9de3a",
         "type": "mqtt-broker",
         "name": "local",
-        "broker": "localhost",
+        "broker": "192.168.100.130",
         "port": "1883",
         "clientid": "",
         "usetls": false,
@@ -187,6 +194,42 @@
         "willTopic": "",
         "willQos": "0",
         "willPayload": ""
+    },
+    {
+        "id": "fd30c2b6.e6b",
+        "type": "mqtt-broker",
+        "name": "container-mqtt-169",
+        "broker": "192.168.100.169",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
+        "id": "dfa37b79.ae2fc8",
+        "type": "ui_group",
+        "name": "Devices",
+        "tab": "5ef052c0.8cce4c",
+        "order": 2,
+        "disp": true,
+        "width": "18"
+    },
+    {
+        "id": "5ef052c0.8cce4c",
+        "type": "ui_tab",
+        "name": "Sonoff",
+        "icon": "dashboard"
     },
     {
         "id": "2344c2d1.87db2e",
@@ -337,7 +380,7 @@
             }
         ],
         "sunControlMode": "2",
-        "sunFloorLength": "50",
+        "sunFloorLength": "200",
         "sunMinAltitude": "",
         "sunMinDelta": "",
         "blindPosMin": "closed (min)",
@@ -388,12 +431,12 @@
         "type": "mqtt out",
         "z": "7630c96e.0ca918",
         "name": "Westblinds",
-        "topic": "cmnd/westblinds/ShutterPosition1",
+        "topic": "cmnd/tasmotas/ShutterPosition1",
         "qos": "",
         "retain": "",
-        "broker": "fdbe63a.a9de3a",
+        "broker": "f42b4523.e8d068",
         "x": 730,
-        "y": 220,
+        "y": 200,
         "wires": []
     },
     {
@@ -453,7 +496,7 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 120,
+        "x": 101,
         "y": 360,
         "wires": [
             [
@@ -511,7 +554,7 @@
         "seg1": "",
         "seg2": "",
         "x": 720,
-        "y": 280,
+        "y": 260,
         "wires": []
     },
     {
@@ -531,7 +574,7 @@
         "min": "100",
         "max": "0",
         "step": "1",
-        "x": 220,
+        "x": 420,
         "y": 60,
         "wires": [
             [
@@ -558,11 +601,401 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 430,
+        "x": 630,
         "y": 60,
         "wires": [
             [
                 "e2f5609a.2a711"
+            ]
+        ]
+    },
+    {
+        "id": "9fb70342.4654",
+        "type": "inject",
+        "z": "61b44bc2.6c9124",
+        "name": "Send probe",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "",
+        "topic": "cmnd/tasmotas/STATUS",
+        "payload": "5",
+        "payloadType": "str",
+        "x": 150,
+        "y": 120,
+        "wires": [
+            [
+                "95d17698.9641d8"
+            ]
+        ]
+    },
+    {
+        "id": "4cff5966.abde28",
+        "type": "mqtt in",
+        "z": "61b44bc2.6c9124",
+        "name": "",
+        "topic": "tele/+/LWT",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "fd30c2b6.e6b",
+        "x": 139.64288330078125,
+        "y": 189.00001525878906,
+        "wires": [
+            [
+                "450d1ee2.0a82a"
+            ]
+        ]
+    },
+    {
+        "id": "48975738.7631e8",
+        "type": "mqtt in",
+        "z": "61b44bc2.6c9124",
+        "name": "",
+        "topic": "tele/+/INFO2",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "fd30c2b6.e6b",
+        "x": 142.07144165039062,
+        "y": 385.7143325805664,
+        "wires": [
+            [
+                "b7c3cd8f.91d03"
+            ]
+        ]
+    },
+    {
+        "id": "f20e31ec.da6d",
+        "type": "mqtt in",
+        "z": "61b44bc2.6c9124",
+        "name": "",
+        "topic": "stat/+/STATUS5",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "fd30c2b6.e6b",
+        "x": 152.857177734375,
+        "y": 448.57144927978516,
+        "wires": [
+            [
+                "82690e72.5e02a"
+            ]
+        ]
+    },
+    {
+        "id": "82690e72.5e02a",
+        "type": "json",
+        "z": "61b44bc2.6c9124",
+        "name": "",
+        "pretty": false,
+        "x": 368.57147216796875,
+        "y": 448.5713577270508,
+        "wires": [
+            [
+                "960eafab.51b17"
+            ]
+        ]
+    },
+    {
+        "id": "b7c3cd8f.91d03",
+        "type": "json",
+        "z": "61b44bc2.6c9124",
+        "name": "",
+        "pretty": false,
+        "x": 369.35711669921875,
+        "y": 385.5714797973633,
+        "wires": [
+            [
+                "a2a62c0d.3d9f"
+            ]
+        ]
+    },
+    {
+        "id": "450d1ee2.0a82a",
+        "type": "change",
+        "z": "61b44bc2.6c9124",
+        "name": "",
+        "rules": [
+            {
+                "t": "change",
+                "p": "topic",
+                "pt": "msg",
+                "from": "tele/(.+)/LWT",
+                "fromt": "re",
+                "to": "$1",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 405.71435546875,
+        "y": 188.42860412597656,
+        "wires": [
+            [
+                "e1db4226.49f53"
+            ]
+        ]
+    },
+    {
+        "id": "e1db4226.49f53",
+        "type": "match",
+        "z": "61b44bc2.6c9124",
+        "name": "",
+        "rules": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "type": "eq",
+                "value": "Online",
+                "valueType": "str"
+            }
+        ],
+        "x": 631.4284973144531,
+        "y": 188.57147216796875,
+        "wires": [
+            [
+                "54b17c7b.d12ab4"
+            ],
+            [
+                "96e01a7d.b0e4a8"
+            ]
+        ],
+        "outputLabels": [
+            "Online",
+            "Offline"
+        ]
+    },
+    {
+        "id": "a2a62c0d.3d9f",
+        "type": "change",
+        "z": "61b44bc2.6c9124",
+        "name": "",
+        "rules": [
+            {
+                "t": "change",
+                "p": "topic",
+                "pt": "msg",
+                "from": "tele/(.+)/INFO2",
+                "fromt": "re",
+                "to": "$1",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "payload.Name",
+                "pt": "msg",
+                "to": "topic",
+                "tot": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "payload.WebserverMode",
+                "pt": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 585.0000915527344,
+        "y": 385.7143325805664,
+        "wires": [
+            [
+                "9b91fb5e.d73318"
+            ]
+        ]
+    },
+    {
+        "id": "960eafab.51b17",
+        "type": "change",
+        "z": "61b44bc2.6c9124",
+        "name": "",
+        "rules": [
+            {
+                "t": "change",
+                "p": "topic",
+                "pt": "msg",
+                "from": "stat/(.+)/STATUS5",
+                "fromt": "re",
+                "to": "$1",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "payload.Hostname",
+                "pt": "msg",
+                "to": "payload.StatusNET.IPAddress",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload.Name",
+                "pt": "msg",
+                "to": "payload.StatusNET.Hostname",
+                "tot": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "payload.StatusNET",
+                "pt": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 580.7142639160156,
+        "y": 448.57141876220703,
+        "wires": [
+            [
+                "9b91fb5e.d73318"
+            ]
+        ]
+    },
+    {
+        "id": "9b91fb5e.d73318",
+        "type": "collector",
+        "z": "61b44bc2.6c9124",
+        "name": "",
+        "onlyIfChanged": true,
+        "x": 1177.0715026855469,
+        "y": 377.7143325805664,
+        "wires": [
+            [
+                "4256e8a0.511e18"
+            ]
+        ]
+    },
+    {
+        "id": "4256e8a0.511e18",
+        "type": "ui_template",
+        "z": "61b44bc2.6c9124",
+        "group": "dfa37b79.ae2fc8",
+        "name": "",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "format": "<md-list>\n    <md-list-item ng-repeat=\"device in msg.payload\">\n        <md-button class=\"md-ink-ripple\" ng-href=\"http://{{device.Hostname}}\" target=\"_blank\">{{device.Name}}</md-button>\n    </md-list-item>\n    \n</md-list>",
+        "storeOutMessages": false,
+        "fwdInMessages": false,
+        "templateScope": "local",
+        "x": 1398.5714416503906,
+        "y": 379.99988555908203,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "95d17698.9641d8",
+        "type": "mqtt out",
+        "z": "61b44bc2.6c9124",
+        "name": "",
+        "topic": "",
+        "qos": "2",
+        "retain": "false",
+        "broker": "fd30c2b6.e6b",
+        "x": 1431.4287414550781,
+        "y": 114.28569793701172,
+        "wires": []
+    },
+    {
+        "id": "fcf2d056.ed589",
+        "type": "delay",
+        "z": "61b44bc2.6c9124",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 1151.4285278320312,
+        "y": 147.1428680419922,
+        "wires": [
+            [
+                "95d17698.9641d8"
+            ]
+        ]
+    },
+    {
+        "id": "54b17c7b.d12ab4",
+        "type": "change",
+        "z": "61b44bc2.6c9124",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "5",
+                "tot": "str"
+            },
+            {
+                "t": "change",
+                "p": "topic",
+                "pt": "msg",
+                "from": "(.+)",
+                "fromt": "re",
+                "to": "cmnd/$1/STATUS",
+                "tot": "str"
+            },
+            {
+                "t": "delete",
+                "p": "qos",
+                "pt": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 891.4285845075333,
+        "y": 157.14290400913782,
+        "wires": [
+            [
+                "fcf2d056.ed589"
+            ]
+        ]
+    },
+    {
+        "id": "96e01a7d.b0e4a8",
+        "type": "change",
+        "z": "61b44bc2.6c9124",
+        "name": "",
+        "rules": [
+            {
+                "t": "delete",
+                "p": "payload",
+                "pt": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 888.21435546875,
+        "y": 210.71432495117188,
+        "wires": [
+            [
+                "9b91fb5e.d73318"
             ]
         ]
     }
